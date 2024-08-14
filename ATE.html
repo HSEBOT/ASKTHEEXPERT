@@ -121,7 +121,7 @@
 		//};
 		embedded_svc.settings.prepopulatedPrechatFields = {
             Chat_to_Case_Config__c: "Prechat_English_Bot",
-            Chat_Section__c: "Ask the Expert"
+            Chat_Section__c: "Covid"
         }; //Sets the auto-population of pre-chat form fields
 		//embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
 		//embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Defaults to Contact Us)
@@ -150,7 +150,7 @@
 		);
         embedded_svc.settings.extraPrechatFormDetails = [{
             "label": "Chat Request Page",
-            "value": "Ask the Expert",
+            "value": "Covid",
             "displayToAgent": true,
             "transcriptFields": ["Chat_Request_Page__c"]
         },{
