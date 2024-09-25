@@ -22,6 +22,10 @@
     embeddedServiceHelpButton .helpButton {
          border-radius: 8px;
     }
+.embeddedServiceHelpButton .uiButton .helpButtonLabel {
+    max-width: none !important; /* Removes max-width */
+    overflow: visible !important; /* Removes overflow */
+}
     .embeddedServiceHelpButton .embeddedServiceIcon::before {
         font-size: 1.5em;
 		content: url(https://assets.hse.ie/chatbot/Einstein-Bot/Iconchat.png);
