@@ -24,6 +24,7 @@
 .embeddedServiceHelpButton .uiButton .helpButtonLabel {
     overflow: visible !important;
     width: fit-content; /* Adjust width as needed */
+    padding-right: 10px;
 }
     .embeddedServiceHelpButton .embeddedServiceIcon::before {
         font-size: 1.5em;
