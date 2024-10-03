@@ -134,16 +134,16 @@
 		embedded_svc.settings.smallCompanyLogoImgURL = 'https://assets.hse.ie/chatbot/Einstein-Bot/Iconchat.png';// To add company logo
 
 		embedded_svc.init(
-			'https://hsecovax--dev35.sandbox.my.salesforce.com',
-			'https://hsecovax--dev35.sandbox.my.site.com/HSEServiceCloudEinsteinBot',
+			'https://hsecovax--devs35.sandbox.my.salesforce.com',
+			'https://hsecovax--devs35.sandbox.my.site.com/HSEServiceCloudEinsteinBot',
 			gslbBaseURL,
-			'00DUB000002lxwL',
+			'00DUB000002zsOv',
 			'Portal_Support',
 			{
-				baseLiveAgentContentURL: 'https://c.la2s-core1.sfdc-cehfhs.salesforceliveagent.com/content',
+				baseLiveAgentContentURL: 'https://c.la12s-core1.sfdc-cehfhs.salesforceliveagent.com/content',
 				deploymentId: '57209000000ontw',
 				buttonId: '57309000000oolR',
-				baseLiveAgentURL: 'https://d.la2s-core1.sfdc-cehfhs.salesforceliveagent.com/chat',
+				baseLiveAgentURL: 'https://d.la12s-core1.sfdc-cehfhs.salesforceliveagent.com/chat',
 				eswLiveAgentDevName: 'EmbeddedServiceLiveAgent_Parent04I09000000kayIEAQ_179ceff663b',
 				isOfflineSupportEnabled: false
 			}
@@ -162,7 +162,7 @@
 
 	if (!window.embedded_svc) {
 		var s = document.createElement('script');
-		s.setAttribute('src', 'https://hsecovax--dev35.sandbox.my.salesforce.com/embeddedservice/5.0/esw.min.js');
+		s.setAttribute('src', 'https://hsecovax--devs35.sandbox.my.salesforce.com/embeddedservice/5.0/esw.min.js');
 		s.onload = function() {
 			initESW(null);
 		};
