@@ -1,1 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+
+<script>
+    var prefix;
+    var verifyCallback = function(token) {
+        var message = prefix + 'success';
+        window.parent.document.dispatchEvent(new CustomEvent('grecaptchaVerified', {detail: {response: token, message: message}}));
+    };
+    var expireCallback = function() {
+        var message = prefix + 'expire';
+        window.parent.document.dispatchEvent(new CustomEvent('grecaptchaExpired', {detail: {message: message}}));
+    };
+    var errorCallback = function() {
+        var message = prefix + 'error';
+        window.parent.document.dispatchEvent(new CustomEvent('grecaptchaError', {detail: {message: message}}));
+    };
+    document.addEventListener('grecaptchaRender', function(e) {
+        prefix = e.detail.prefix;
+        prefix = prefix ? prefix : '';
+        grecaptcha.render(e.detail.element, {
+            'sitekey': '6Levm0spAAAAAOJozXJDW1YgGAvWw5tIkvBZ9Jds',
+            'callback': verifyCallback,
+            'expired-callback': expireCallback,
+            'error-callback': errorCallback
+        });   
+    });
+    document.addEventListener('grecaptchaReset', function() {
+        grecaptcha.reset();
+    }); 
+</script>
+
+
+<style type='text/css'>
+	.embeddedServiceHelpButton .helpButton .uiButton {
+		background-color: #80FFD8;
+		font-family: "Arial", sans-serif;
+		border-radius: 8px;
+		width: 177px;
+		height: 53px;
+	}
+	.embeddedServiceHelpButton .helpButton .uiButton:focus {
+		outline: 1px solid #80FFD8;
+		border-radius: 8px;
+	}
+    embeddedServiceHelpButton .helpButton {
+         border-radius: 8px;
+    }
+    .embeddedServiceHelpButton .embeddedServiceIcon::before {
+        font-size: 1.5em;
+		content: url(https://assets.hse.ie/chatbot/Einstein-Bot/Iconchat.png);
+    }
+    .embeddedServiceLiveAgentStateChatPlaintextMessageDefaultUI.agent.plaintextContent{
+        background: #F3F3F3;
+    }
+    .embeddedServiceLiveAgentStateChatMenuMessage .rich-menu-item{
+        background: #80FFD8;
+    }
+    .embeddedServiceHelpButton .helpButton .uiButton:hover::before, .embeddedServiceHelpButton .helpButton .uiButton:focus::before{
+        border-radius: 8px;
+    }
+    .embeddedServiceLiveAgentStateChatInputFooter.chasitorInputWrapper{
+        background-color:#F3F3F3 ;
+    }
+    .embeddedServiceLiveAgentStateChatInputFooter .footerMenuWrapper .footer-menu .slds-button_icon-container-more{
+        color: #5F3DC4 !important;
+    }
+    .embeddedServiceSidebarButton {
+        background:#5F3DC4 !important;
+    }
+	.embeddedServiceSidebarButton.uiButton--inverse .label {
+    	color: #000000;
+	}
+	.embeddedServiceHelpButton .uiButton .helpButtonLabel .message{
+		color:  #000000;
+	}
+	.embeddedServiceSidebarButton[c-botPreChatForm_botPreChatForm]{
+	    width: 115px;
+	}	
+	.embeddedServiceSidebarButton.uiButton--inverse .label{
+		color:  #ffffff;
+	}
+	.embeddedServiceSidebarMinimizedDefaultUI .content{
+        color:  #000000;
+    }
+	.embeddedServiceSidebarMinimizedDefaultUI .embeddedServiceIcon{
+		font-size: 1.5em;
+		content: url(https://assets.hse.ie/chatbot/Einstein-Bot/Iconchat.png);
+	}
+	.embeddedServiceSidebarMinimizedDefaultUI .minimizedImage img, .embeddedServiceSidebarMinimizedDefaultUI .minimizedImage .uiImage{
+		Height: 16px;
+		Width: 16px;
+		border-radius: 0px;
+    }
+	.embeddedServiceSidebarButton.uiButton--inverse, .embeddedServiceSidebarButton.uiButton--inverse:disabled,.embeddedServiceSidebarDialogState .dialogButton{
+		width: 205px;
+		height: 48px;
+	}
+</style>
+
+<script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
+<script type='text/javascript'>
+	var initESW = function(gslbBaseURL) {
+		embedded_svc.settings.displayHelpButton = true; //Or false
+		embedded_svc.settings.language = ''; //For example, enter 'en' or 'en-US'
+
+		embedded_svc.settings.defaultMinimizedText = 'covid'; //(Defaults to Chat with an Expert)
+		//embedded_svc.settings.disabledMinimizedText = '...'; //(Defaults to Agent Offline)
+
+		//embedded_svc.settings.loadingText = ''; //(Defaults to Loading)
+		//embedded_svc.settings.storageDomain = 'yourdomain.com'; //(Sets the domain for your deployment so that visitors can navigate subdomains during a chat session)
+
+		// Settings for Chat
+		//embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
+			// Dynamically changes the button ID based on what the visitor enters in the pre-chat form.
+			// Returns a valid button ID.
+		//};
+		embedded_svc.settings.prepopulatedPrechatFields = {
+            Chat_to_Case_Config__c: "Prechat_English_Bot",
+            Chat_Section__c: "Covid"
+        };
+		//embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
+		//embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Defaults to Contact Us)
+
+		embedded_svc.settings.enabledFeatures = ['LiveAgent'];
+		embedded_svc.settings.entryFeature = 'LiveAgent';
+		
+        embedded_svc.settings.chatbotAvatarImgURL = 'https://assets.hse.ie/chatbot/Einstein-Bot/AvatarHSE.png';//To add Einstein Bot Avatar 
+		embedded_svc.settings.avatarImgURL = 'https://assets.hse.ie/chatbot/Einstein-Bot/AvatarCallAgent.png';// To add Agent Avatar
+		embedded_svc.settings.smallCompanyLogoImgURL = 'https://assets.hse.ie/chatbot/Einstein-Bot/Iconchat.png';// To add company logo
+        
+		embedded_svc.init(
+			'https://hsecovax--devs35.sandbox.my.salesforce.com',
+			'https://hsecovax--devs35.sandbox.my.site.com/HSEServiceCloudEinsteinBot',
+			gslbBaseURL,
+			'00DUB000002zsOv',
+			'Portal_Support',
+			{
+				baseLiveAgentContentURL: 'https://c.la12s-core1.sfdc-cehfhs.salesforceliveagent.com/content',
+				deploymentId: '57209000000ontw',
+				buttonId: '57309000000oolR',
+				baseLiveAgentURL: 'https://d.la12s-core1.sfdc-cehfhs.salesforceliveagent.com/chat',
+				eswLiveAgentDevName: 'EmbeddedServiceLiveAgent_Parent04I09000000kayIEAQ_179ceff663b',
+				isOfflineSupportEnabled: false
+			}
+		);
+        embedded_svc.settings.extraPrechatFormDetails = [{
+            "label": "Chat Request Page",
+            "value": "Covid",
+            "displayToAgent": true,
+            "transcriptFields": ["Chat_Request_Page__c"]
+        },{
+            "label":"Chat Language", 
+            "value":"English",
+            "transcriptFields": ["Chat_Language__c"]
+        }];
+	};
+
+	if (!window.embedded_svc) {
+		var s = document.createElement('script');
+		s.setAttribute('src', 'https://hsecovax--devs35.sandbox.my.salesforce.com/embeddedservice/5.0/esw.min.js');
+		s.onload = function() {
+			initESW(null);
+		};
+		document.body.appendChild(s);
+	} else {
+		initESW('https://service.force.com');
+	}
+</script>
+
+</body>
+</html>
+
+
 
